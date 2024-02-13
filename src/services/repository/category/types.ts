@@ -49,8 +49,10 @@ export type CategoryItem = Pick<CategoryItemResponse, 'name' | 'thumbnail'> & {
 
 type FilterCommon = Pick<CategoryFilterResponse, 'code' | 'name'>;
 
+export type FilterOption = Pick<CategoryFilterOption, 'name' | 'value' | 'count'>;
+
 export type FilterWithOptions = FilterCommon & {
-    options: Pick<CategoryFilterOption, 'name' | 'value' | 'count'>[];
+    options: FilterOption[];
 };
 
 export type FilterWithRange = FilterCommon & { min: number; max: number };

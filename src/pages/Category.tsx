@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Grid } from '@mui/material';
+import { ContainerProps, Grid, styled } from '@mui/material';
 import Filter from '@gymbeam/components/Filter';
 import ProductList from '@gymbeam/components/ProductList';
 import { useGetCategory } from '@gymbeam/services/repository/category';
@@ -8,15 +8,25 @@ const Category: FC = () => {
     const { data } = useGetCategory();
 
     return (
-        <Grid container>
-            <Grid item xs={3}>
-                <Filter />
+        <CategoryContainer container>
+            <Grid item xs={3} pr={3}>
+                <Filter filters={data?.filters} />
             </Grid>
-            <Grid item xs={9}>
+            <Grid item xs={9} pt={3} pl={3}>
                 <ProductList items={data?.items ?? []} />
             </Grid>
-        </Grid>
+        </CategoryContainer>
     );
 };
+
+const CategoryContainer = styled(Grid)<ContainerProps>(() => ({
+    height: '100%',
+    overflow: 'hidden',
+
+    '& .MuiGrid-item': {
+        height: '100%',
+        overflow: 'auto',
+    },
+}));
 
 export default Category;
