@@ -51,15 +51,17 @@ type FilterCommon = Pick<CategoryFilterResponse, 'code' | 'name'>;
 
 export type FilterOption = Pick<CategoryFilterOption, 'name' | 'value' | 'count'>;
 
-export type FilterWithOptions = FilterCommon & {
+export type FilterMultiselect = FilterCommon & {
     options: FilterOption[];
 };
 
 export type FilterWithRange = FilterCommon & { min: number; max: number };
 
+export type FilterCheckbox = FilterCommon & Pick<CategoryFilterOption, 'value' | 'count'>;
+
 export type CategoryFilters = {
-    multiselects: FilterWithOptions[];
-    checkboxes: FilterWithOptions[];
+    multiselects: FilterMultiselect[];
+    checkboxes: FilterCheckbox[];
     ranges: FilterWithRange[];
 };
 

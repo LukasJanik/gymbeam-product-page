@@ -1,17 +1,8 @@
 import { FC } from 'react';
-import {
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Typography,
-    Card,
-    styled,
-    Button,
-} from '@mui/material';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { CardActionArea, CardContent, CardMedia, Typography, Card, styled } from '@mui/material';
 import { CategoryItem } from '@gymbeam/services/repository/category/types';
 import Rating from './Rating';
+import Actions from './Actions';
 
 type ProductProps = {
     product: CategoryItem;
@@ -34,19 +25,17 @@ const Product: FC<ProductProps> = ({ product }) => {
                     </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
-                <Button variant="contained" endIcon={<AddShoppingCartIcon />}>
-                    Pridať do košíka
-                </Button>
-            </CardActions>
+            <Actions />
         </ProductCard>
     );
 };
 
-const ProductCard = styled(Card)(({ theme: { spacing } }) => ({
+const ProductCard = styled(Card)(({ theme: { spacing, shadows } }) => ({
     minHeight: 508,
     display: 'flex',
     flexDirection: 'column',
+    boxShadow: shadows['3'],
+    margin: spacing(1),
     '& .MuiCardMedia-media': {
         maxHeight: 281,
     },

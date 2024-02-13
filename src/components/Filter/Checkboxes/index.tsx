@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
 import { Box } from '@mui/material';
 import SectionTitle from '../SectionTitle';
-import Option from './Option';
+import Checkbox from './Checkbox';
 
 type CheckboxProps = {
     checkboxes: CategoryFilters['checkboxes'];
@@ -14,8 +14,8 @@ const Checkboxes: FC<CheckboxProps> = ({ checkboxes }) => {
             <SectionTitle label="Filtrovať podľa"></SectionTitle>
             <Box display="flex" gap={1} flexWrap="wrap">
                 {checkboxes.map((checkbox) => (
-                    <Option
-                        option={checkbox.options[0]}
+                    <Checkbox
+                        checkbox={checkbox}
                         onClick={() => console.log('clicked')}
                         isSelected={false}
                         key={checkbox.code}

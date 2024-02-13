@@ -3,7 +3,7 @@ import {
     CategoryFilterResponse,
     CategoryFilters,
     CategoryResponse,
-    FilterWithOptions,
+    FilterMultiselect,
     FilterWithRange,
 } from '@gymbeam/services/repository/category/types';
 
@@ -19,11 +19,11 @@ const mapItems = (items: CategoryResponse['items']) =>
         })
     );
 
-const getFilterWithOptions = (
+const getMultiselectFilter = (
     code: CategoryFilterResponse['code'],
     name: CategoryFilterResponse['name'],
     options: CategoryFilterResponse['options']
-): FilterWithOptions => ({
+): FilterMultiselect => ({
     code,
     name,
     options:
@@ -46,6 +46,17 @@ const getRangeFilter = (
     max: max ?? 0,
 });
 
+const getCheckboxFilter = (
+    code: CategoryFilterResponse['code'],
+    name: CategoryFilterResponse['name'],
+    options: CategoryFilterResponse['options']
+) => ({
+    code,
+    name,
+    count: options?.[0].count ?? 0,
+    value: options?.[0].value ?? '',
+});
+
 const filterFilters = (filters: CategoryResponse['filters']) =>
     filters.reduce(
         (result, { type, code, name, options, min, max }) => {
@@ -55,9 +66,13 @@ const filterFilters = (filters: CategoryResponse['filters']) =>
                 return result;
             }
 
-            result[type === 'multiselect' ? 'multiselects' : 'checkboxes'].push(
-                getFilterWithOptions(code, name, options)
-            );
+            if (type === 'multiselect') {
+                result.multiselects.push(getMultiselectFilter(code, name, options));
+
+                return result;
+            }
+
+            result.checkboxes.push(getCheckboxFilter(code, name, options));
 
             return result;
         },

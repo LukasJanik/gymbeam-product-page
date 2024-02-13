@@ -9,10 +9,10 @@ const Category: FC = () => {
 
     return (
         <CategoryContainer container>
-            <Grid item xs={3} pr={3}>
+            <Grid item xs={3} pr={3} boxShadow={5}>
                 <Filter filters={data?.filters} />
             </Grid>
-            <Grid item xs={9} pt={3} pl={3}>
+            <Grid item xs={9} px={3} py={4}>
                 <ProductList items={data?.items ?? []} />
             </Grid>
         </CategoryContainer>

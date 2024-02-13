@@ -1,10 +1,10 @@
 import { FC } from 'react';
 import { Box } from '@mui/material';
-import { FilterWithOptions } from '@gymbeam/services/repository/category/types';
+import { FilterMultiselect } from '@gymbeam/services/repository/category/types';
 import SectionTitle from '../SectionTitle';
 import Option from './Option';
 
-type MultiselectProps = FilterWithOptions;
+type MultiselectProps = FilterMultiselect;
 
 const Multiselect: FC<MultiselectProps> = ({ code, name, options }) => {
     return (
