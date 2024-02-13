@@ -1,5 +1,5 @@
 import Category from '@gymbeam/pages/Category';
-import QueryClientProvider from '@gymbeam/components/QueryClientProvider';
+import QueryClientProvider from '@gymbeam/services/QueryClientProvider';
 
 function App() {
     return (
