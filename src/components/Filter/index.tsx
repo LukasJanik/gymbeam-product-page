@@ -3,6 +3,7 @@ import { Divider, Stack, Typography } from '@mui/material';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
 import Multiselects from '@gymbeam/components/Filter/Multiselects';
 import Checkboxes from '@gymbeam/components/Filter/Checkboxes';
+import Ranges from '@gymbeam/components/Filter/Ranges';
 
 type FilterProps = {
     filters: CategoryFilters | undefined;
@@ -16,6 +17,7 @@ const Filter: FC<FilterProps> = ({ filters }) => {
             <Typography variant="h4">Filter</Typography>
             <Multiselects multiselects={multiselects} />
             <Checkboxes checkboxes={checkboxes} />
+            <Ranges ranges={ranges} />
         </Stack>
     );
 };

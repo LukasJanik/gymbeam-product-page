@@ -2,12 +2,12 @@ import { FC } from 'react';
 import { Typography } from '@mui/material';
 
 type SectionTitleProps = {
-    label: string;
+    children: string;
 };
 
-const SectionTitle: FC<SectionTitleProps> = ({ label }) => (
+const SectionTitle: FC<SectionTitleProps> = ({ children }) => (
     <Typography gutterBottom variant="h6">
-        {label}
+        {children}
     </Typography>
 );
 

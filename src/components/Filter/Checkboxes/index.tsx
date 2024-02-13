@@ -5,16 +5,14 @@ import SectionTitle from '../SectionTitle';
 import Checkbox from './Checkbox';
 import useHandleCheckboxParams from '@gymbeam/components/Filter/Checkboxes/useHandleCheckboxParams';
 
-type CheckboxProps = {
-    checkboxes: CategoryFilters['checkboxes'];
-};
+type CheckboxProps = Pick<CategoryFilters, 'checkboxes'>;
 
 const Checkboxes: FC<CheckboxProps> = ({ checkboxes }) => {
     const [checkIsChecked, updateValue] = useHandleCheckboxParams();
 
-    return (
+    return checkboxes.length ? (
         <Box display="flex" flexDirection="column" gap={2}>
-            <SectionTitle label="Filtrovať podľa"></SectionTitle>
+            <SectionTitle children="Filtrovať podľa"></SectionTitle>
             <Box display="flex" gap={1} flexWrap="wrap">
                 {checkboxes.map((checkbox) => (
                     <Checkbox
@@ -26,7 +24,7 @@ const Checkboxes: FC<CheckboxProps> = ({ checkboxes }) => {
                 ))}
             </Box>
         </Box>
-    );
+    ) : null;
 };
 
 export default Checkboxes;

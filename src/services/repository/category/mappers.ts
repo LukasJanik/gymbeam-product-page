@@ -4,7 +4,7 @@ import {
     CategoryFilters,
     CategoryResponse,
     FilterMultiselect,
-    FilterWithRange,
+    FilterRange,
 } from '@gymbeam/services/repository/category/types';
 
 const mapItems = (items: CategoryResponse['items']) =>
@@ -39,7 +39,7 @@ const getRangeFilter = (
     name: CategoryFilterResponse['name'],
     min: CategoryFilterResponse['min'],
     max: CategoryFilterResponse['max']
-): FilterWithRange => ({
+): FilterRange => ({
     code,
     name,
     min: min ?? 0,

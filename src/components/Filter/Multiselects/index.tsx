@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { FilterMultiselect } from '@gymbeam/services/repository/category/types';
+import { CategoryFilters } from '@gymbeam/services/repository/category/types';
 import Multiselect from './Multiselect';
 
-type MultiselectProps = { multiselects: FilterMultiselect[] };
+type MultiselectProps = Pick<CategoryFilters, 'multiselects'>;
 
 const Multiselects: FC<MultiselectProps> = ({ multiselects }) => (
     <>

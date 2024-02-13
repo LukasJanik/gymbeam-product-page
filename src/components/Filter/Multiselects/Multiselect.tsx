@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box } from '@mui/material';
+import { Box, Stack, styled } from '@mui/material';
 import { FilterMultiselect } from '@gymbeam/services/repository/category/types';
 import SectionTitle from '../SectionTitle';
 import Option from './Option';
@@ -11,9 +11,9 @@ const Multiselect: FC<MultiselectProps> = ({ code, name, options }) => {
     const [checkIsSelected, updateValue] = useHandleMultiselectParams();
 
     return (
-        <Box display="flex" flexDirection="column" gap={2}>
-            <SectionTitle label={name}></SectionTitle>
-            <Box display="flex" gap={1} flexWrap="wrap">
+        <Stack gap={2}>
+            <SectionTitle>{name}</SectionTitle>
+            <OptionsContainer>
                 {options.map((option) => (
                     <Option
                         code={code}
@@ -23,9 +23,15 @@ const Multiselect: FC<MultiselectProps> = ({ code, name, options }) => {
                         key={option.value}
                     />
                 ))}
-            </Box>
-        </Box>
+            </OptionsContainer>
+        </Stack>
     );
 };
+
+const OptionsContainer = styled(Box)(({ theme: { spacing } }) => ({
+    display: 'flex',
+    gap: spacing(1),
+    flexWrap: 'wrap',
+}));
 
 export default Multiselect;

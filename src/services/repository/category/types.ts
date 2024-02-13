@@ -55,14 +55,14 @@ export type FilterMultiselect = FilterCommon & {
     options: FilterOption[];
 };
 
-export type FilterWithRange = FilterCommon & { min: number; max: number };
+export type FilterRange = FilterCommon & { min: number; max: number };
 
 export type FilterCheckbox = FilterCommon & Pick<CategoryFilterOption, 'value' | 'count'>;
 
 export type CategoryFilters = {
     multiselects: FilterMultiselect[];
     checkboxes: FilterCheckbox[];
-    ranges: FilterWithRange[];
+    ranges: FilterRange[];
 };
 
 export type CategoryData = {
