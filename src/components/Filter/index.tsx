@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Divider, Stack, Typography } from '@mui/material';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
-import Multiselect from '@gymbeam/components/Filter/Multiselect';
+import Multiselects from '@gymbeam/components/Filter/Multiselects';
 import Checkboxes from '@gymbeam/components/Filter/Checkboxes';
 
 type FilterProps = {
@@ -12,11 +12,9 @@ const Filter: FC<FilterProps> = ({ filters }) => {
     const { multiselects = [], checkboxes = [], ranges = [] } = filters ?? {};
 
     return (
-        <Stack gap={2} divider={<Divider />} py={3}>
+        <Stack gap={2} py={3} divider={<Divider />}>
             <Typography variant="h4">Filter</Typography>
-            {multiselects.map((multiselect) => (
-                <Multiselect {...multiselect} key={multiselect.code} />
-            ))}
+            <Multiselects multiselects={multiselects} />
             <Checkboxes checkboxes={checkboxes} />
         </Stack>
     );
