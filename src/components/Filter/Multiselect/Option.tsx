@@ -1,7 +1,8 @@
 import { FC, useState } from 'react';
 import { Button } from '@mui/material';
 import { FilterOption } from '@gymbeam/services/repository/category/types';
-import { CheckIsSelected, UpdateSelection } from '@gymbeam/components/Filter/Multiselect/types';
+import { CheckIsSelected, UpdateSelection } from '@gymbeam/components/Filter/types';
+import getFilterLabel from '@gymbeam/helpers/getFilterLabel';
 
 type OptionProps = {
     code: string;
@@ -22,7 +23,7 @@ const Option: FC<OptionProps> = ({ code, option, checkIsSelected, onClick }) => 
                 onClick(code, value);
             }}
         >
-            {name} ({count})
+            {getFilterLabel(name, count)}
         </Button>
     );
 };

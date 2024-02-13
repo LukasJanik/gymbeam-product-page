@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
-import { CheckIsSelected, UpdateSelection } from './types';
+import { CheckIsSelected, UpdateSelection } from '../types';
 
 const divider = ',';
 const unchainValues = (value: string | null) => value?.split(divider);
