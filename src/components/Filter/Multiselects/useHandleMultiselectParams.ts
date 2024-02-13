@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { CheckIsSelected, UpdateSelection } from '../types';
+import useDebounce from '@gymbeam/hooks/useDebounce';
 
 const divider = ',';
 const unchainValues = (value: string | null) => value?.split(divider);
@@ -16,7 +17,7 @@ const useHandleMultiselectParams = (): [CheckIsSelected, UpdateSelection] => {
                 .find((paramsValue) => paramsValue === value)
         );
 
-    const updateValue = (code: string, value: string) => {
+    const updateValue = useDebounce((code: string, value: string) => {
         const currentValues = unchainValues(searchParams.get(code));
 
         if (currentValues) {
@@ -36,7 +37,7 @@ const useHandleMultiselectParams = (): [CheckIsSelected, UpdateSelection] => {
         }
 
         setSearchParams(searchParams);
-    };
+    });
 
     return [checkIsSelected, updateValue];
 };

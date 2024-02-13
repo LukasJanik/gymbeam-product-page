@@ -20,7 +20,7 @@ const useHandleRangeParams = (): [GetRangeValues, UpdateRangeValues] => {
         searchParams.set(code, createRangeValues(min, max));
 
         setSearchParams(searchParams);
-    }, 500);
+    });
 
     return [getRangeParams, updateValue];
 };

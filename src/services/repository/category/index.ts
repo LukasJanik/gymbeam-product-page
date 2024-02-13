@@ -4,9 +4,10 @@ import { GET_CATEGORY } from '../keys';
 import { CategoryData, CategoryResponse } from './types';
 import { mapCategoryResponse } from './mappers';
 
-const reformatSearchParams = (searchParams: string) => searchParams.replaceAll('=', '[]=');
+const reformatSearchParams = (searchParams: string) =>
+    searchParams.replaceAll('=', '[]=').replace('price[]', 'price');
 const getCategoryPath = (searchParams: string) => {
-    const defaultPath = '/api?category_ids[]=2416';
+    const defaultPath = `${import.meta.env.VITE_PROXY_PATH}?category_ids[]=2416`;
 
     return searchParams ? `${defaultPath}&${reformatSearchParams(searchParams)}` : defaultPath;
 };

@@ -1,12 +1,13 @@
 import { useSearchParams } from 'react-router-dom';
 import { CheckIsSelected, UpdateSelection } from '../types';
+import useDebounce from '@gymbeam/hooks/useDebounce';
 
 const useHandleCheckboxParams = (): [CheckIsSelected, UpdateSelection] => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const checkIsChecked = (code: string, value: string) => searchParams.get(code) === value;
 
-    const updateValue = (code: string, value: string) => {
+    const updateValue = useDebounce((code: string, value: string) => {
         if (searchParams.has(code)) {
             searchParams.delete(code);
         } else {
@@ -14,7 +15,7 @@ const useHandleCheckboxParams = (): [CheckIsSelected, UpdateSelection] => {
         }
 
         setSearchParams(searchParams);
-    };
+    });
 
     return [checkIsChecked, updateValue];
 };

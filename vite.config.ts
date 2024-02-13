@@ -4,16 +4,17 @@ import * as path from 'path';
 
 export default defineConfig(({ mode }) => {
     process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+    const apiPath = process.env.VITE_PROXY_PATH as string;
 
     return {
         plugins: [react()],
         server: {
             proxy: {
-                '/api': {
+                [apiPath]: {
                     target: process.env.VITE_API_PATH,
                     changeOrigin: true,
                     secure: true,
-                    rewrite: (path) => path.replace('/api', ''),
+                    rewrite: (path) => path.replace(apiPath, ''),
                 },
             },
         },
