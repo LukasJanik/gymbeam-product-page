@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 const defaultDelay = 500;
 
 const useDebounce = (callback: (...args: any[]) => void, delay: number = defaultDelay) => {
-    const timeoutRef = useRef(null);
+    const timeoutRef = useRef<any>(null);
 
     useEffect(() => {
         return () => {
@@ -13,7 +13,7 @@ const useDebounce = (callback: (...args: any[]) => void, delay: number = default
         };
     }, []);
 
-    return (...args) => {
+    return (...args: any[]) => {
         if (timeoutRef.current) {
             clearTimeout(timeoutRef.current);
         }

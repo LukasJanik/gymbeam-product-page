@@ -1,6 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
-import { CheckIsSelected, UpdateSelection } from '../types';
 import useDebounce from '@gymbeam/hooks/useDebounce';
+import { formatSearchParamCode as formatCode } from '@gymbeam/helpers';
+import { CheckIsSelected, UpdateSelection } from '../types';
 
 const divider = ',';
 const unchainValues = (value: string | null) => value?.split(divider);
@@ -12,28 +13,30 @@ const useHandleMultiselectParams = (): [CheckIsSelected, UpdateSelection] => {
     const checkIsSelected = (code: string, value: string) =>
         Boolean(
             searchParams
-                .get(code)
+                .get(formatCode(code))
                 ?.split(',')
                 .find((paramsValue) => paramsValue === value)
         );
 
     const updateValue = useDebounce((code: string, value: string) => {
-        const currentValues = unchainValues(searchParams.get(code));
+        const formattedCode = formatCode(code);
+
+        const currentValues = unchainValues(searchParams.get(formattedCode));
 
         if (currentValues) {
             if (currentValues.indexOf(value) !== -1) {
                 const newValues = currentValues.filter((currentValue) => currentValue !== value);
 
                 if (!newValues.length) {
-                    searchParams.delete(code);
+                    searchParams.delete(formattedCode);
                 } else {
-                    searchParams.set(code, chainValues(newValues));
+                    searchParams.set(formattedCode, chainValues(newValues));
                 }
             } else {
-                searchParams.set(code, chainValues([...currentValues, value]));
+                searchParams.set(formattedCode, chainValues([...currentValues, value]));
             }
         } else {
-            searchParams.set(code, value);
+            searchParams.set(formattedCode, value);
         }
 
         setSearchParams(searchParams);

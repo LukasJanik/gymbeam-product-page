@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { Button } from '@mui/material';
 import { FilterOption } from '@gymbeam/services/repository/category/types';
 import { CheckIsSelected, UpdateSelection } from '@gymbeam/components/Filter/types';
-import getFilterLabel from '@gymbeam/helpers/getFilterLabel';
+import { getFilterLabel } from '@gymbeam/helpers';
 
 type OptionProps = {
     code: string;

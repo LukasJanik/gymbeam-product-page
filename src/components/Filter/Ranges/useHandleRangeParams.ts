@@ -1,11 +1,11 @@
 import { useSearchParams } from 'react-router-dom';
-import { GetRangeValues, UpdateRangeValues } from '../types';
+import { GetRangeValues, UpdateRangeValues, Range } from '../types';
 import useDebounce from '@gymbeam/hooks/useDebounce';
 
 const getRangeValues = (range: string | null) => {
-    const rangeValues = range?.split('-');
+    const rangeValues = range?.split('-').map(parseInt);
 
-    return rangeValues?.length === 2 ? rangeValues : null;
+    return rangeValues?.length === 2 ? (rangeValues as Range) : null;
 };
 const createRangeValues = (min: number, max: number) => `${min}-${max}`;
 
