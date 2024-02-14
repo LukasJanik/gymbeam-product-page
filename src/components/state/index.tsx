@@ -1,4 +1,5 @@
-import ErrorState from './ErrorState';
-import LoadingState from './LoadingState';
+import ErrorState from './Error';
+import LoadingState from './Loading';
+import NoResultsState from './NoResults';
 
-export { ErrorState, LoadingState };
+export { ErrorState, NoResultsState, LoadingState };

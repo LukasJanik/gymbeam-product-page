@@ -6,6 +6,7 @@ import QueryClientProvider from '@gymbeam/services/QueryClientProvider';
 import Navbar from '@gymbeam/components/Navbar';
 
 function App() {
+
     return (
         <HelmetProvider>
             <Head />

@@ -12,9 +12,7 @@ const createRangeValues = (min: number, max: number) => `${min}-${max}`;
 const useHandleRangeParams = (): [GetRangeValues, UpdateRangeValues] => {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const getRangeParams = (code: string) => {
-        return getRangeValues(searchParams.get(code));
-    };
+    const getRangeParams = (code: string) => getRangeValues(searchParams.get(code));
 
     const updateValue = useDebounce((code: string, [min, max]) => {
         searchParams.set(code, createRangeValues(min, max));
