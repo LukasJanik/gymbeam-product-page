@@ -6,7 +6,7 @@ import {
     UpdateRangeValues,
     Range as RangeT,
 } from '@gymbeam/components/Filter/types';
-import SectionTitle from '@gymbeam/components/Filter/SectionTitle';
+import { Title } from '@gymbeam/components/Filter/section';
 
 type RangeProps = {
     range: FilterRange;
@@ -16,17 +16,11 @@ type RangeProps = {
 
 const Range: FC<RangeProps> = ({ range, getRangeValues, updateRangeValues }) => {
     const { name, min, max, code } = range;
-    const [value, setValue] = useState<RangeT>(getRangeValues() ?? [min, max]);
-
-    const handleChange = (_: Event, newValue: RangeT) => {
-        setValue(newValue);
-
-        updateRangeValues(code, newValue);
-    };
+    const [value, setValue] = useState<RangeT>(getRangeValues(code) ?? [min, max]);
 
     return (
         <Stack gap={2}>
-            <SectionTitle>{name}</SectionTitle>
+            <Title>{name}</Title>
             <Stack px={3}>
                 <Slider
                     marks={[
@@ -41,7 +35,12 @@ const Range: FC<RangeProps> = ({ range, getRangeValues, updateRangeValues }) => 
                     valueLabelDisplay="auto"
                     min={min}
                     max={max}
-                    onChange={handleChange}
+                    onChange={(_, newValue) => {
+                        const typedValue = newValue as RangeT;
+                        setValue(typedValue);
+
+                        updateRangeValues(code, typedValue);
+                    }}
                 />
                 <Box display="flex" justifyContent="space-between">
                     <Typography variant="body2">{min}</Typography>

@@ -14,7 +14,7 @@ const Category: FC = () => {
         <>
             <LoadingState isLoading={isLoading || isFetching} />
             <CategoryContainer container>
-                <Grid item xs={3} pr={3} boxShadow={5}>
+                <Grid item xs={3} px={3} boxShadow={5} bgcolor="white">
                     <Filter filters={data?.filters} />
                 </Grid>
                 <Grid item xs={9} px={3} py={4}>
@@ -25,9 +25,10 @@ const Category: FC = () => {
     );
 };
 
-const CategoryContainer = styled(Grid)<ContainerProps>(() => ({
+const CategoryContainer = styled(Grid)<ContainerProps>(({ theme: { palette } }) => ({
     height: '100%',
     overflow: 'hidden',
+    backgroundColor: palette.grey[100],
 
     '& .MuiGrid-item': {
         height: '100%',

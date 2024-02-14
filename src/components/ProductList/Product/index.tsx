@@ -38,6 +38,7 @@ const ProductCard = styled(Card)(({ theme: { spacing, shadows } }) => ({
     margin: spacing(1),
     '& .MuiCardMedia-media': {
         maxHeight: 281,
+        width: 'auto',
     },
     '& .MuiCardActionArea-root': {
         display: 'flex',

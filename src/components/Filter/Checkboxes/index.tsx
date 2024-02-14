@@ -1,9 +1,8 @@
 import { FC } from 'react';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
-import { Box } from '@mui/material';
-import SectionTitle from '../SectionTitle';
+import Section from '../section/Section';
 import Checkbox from './Checkbox';
-import useHandleCheckboxParams from '@gymbeam/components/Filter/Checkboxes/useHandleCheckboxParams';
+import useHandleCheckboxParams from './useHandleCheckboxParams';
 
 type CheckboxProps = Pick<CategoryFilters, 'checkboxes'>;
 
@@ -11,19 +10,16 @@ const Checkboxes: FC<CheckboxProps> = ({ checkboxes }) => {
     const [checkIsChecked, updateValue] = useHandleCheckboxParams();
 
     return checkboxes.length ? (
-        <Box display="flex" flexDirection="column" gap={2}>
-            <SectionTitle children="Filtrovať podľa"></SectionTitle>
-            <Box display="flex" gap={1} flexWrap="wrap">
-                {checkboxes.map((checkbox) => (
-                    <Checkbox
-                        checkbox={checkbox}
-                        onClick={updateValue}
-                        checkIsChecked={checkIsChecked}
-                        key={checkbox.code}
-                    />
-                ))}
-            </Box>
-        </Box>
+        <Section title="Filtrovať podľa">
+            {checkboxes.map((checkbox) => (
+                <Checkbox
+                    checkbox={checkbox}
+                    onClick={updateValue}
+                    checkIsChecked={checkIsChecked}
+                    key={checkbox.code}
+                />
+            ))}
+        </Section>
     ) : null;
 };
 

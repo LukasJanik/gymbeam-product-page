@@ -27,11 +27,11 @@ const Header: FC<HeaderProps> = ({ onReset }) => {
 const HeaderContainer = styled(Box)(({ theme: { spacing, palette } }) => ({
     display: 'flex',
     justifyContent: 'space-between',
-    padding: spacing(2, 0),
+    padding: spacing(2, 3, 0, 0),
     marginRight: spacing(-3),
     position: 'sticky',
     top: 0,
-    backgroundColor: palette.grey[50],
+    backgroundColor: palette.common.white,
     zIndex: 100,
 }));
 
