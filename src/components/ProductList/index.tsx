@@ -7,16 +7,14 @@ type ProductListProps = {
     items: CategoryData['items'];
 };
 
-const ProductList: FC<ProductListProps> = ({ items }) => {
-    return (
-        <Grid container>
-            {items.map((item, index) => (
-                <Grid item xs={4} key={index}>
-                    <Product product={item} />
-                </Grid>
-            ))}
-        </Grid>
-    );
-};
+const ProductList: FC<ProductListProps> = ({ items }) => (
+    <Grid container>
+        {items.map((item, index) => (
+            <Grid item sm={6} lg={4} xl={3} key={index}>
+                <Product product={item} />
+            </Grid>
+        ))}
+    </Grid>
+);
 
 export default ProductList;

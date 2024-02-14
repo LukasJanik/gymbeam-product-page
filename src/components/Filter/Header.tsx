@@ -13,6 +13,7 @@ const Header: FC<HeaderProps> = ({ onReset }) => {
         <HeaderContainer>
             <Typography variant="h4">Filter</Typography>
             <Button
+                variant="outlined"
                 onClick={() => {
                     navigate('./');
                     onReset();
@@ -26,6 +27,7 @@ const Header: FC<HeaderProps> = ({ onReset }) => {
 
 const HeaderContainer = styled(Box)(({ theme: { spacing, palette } }) => ({
     display: 'flex',
+    flexWrap: 'wrap',
     justifyContent: 'space-between',
     padding: spacing(2, 3, 0, 0),
     marginRight: spacing(-3),
