@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "docker-build": "docker build -t gymbeam-product-page FE",
-    "docker-run": "docker run --rm --tty -p 3000:3000 gymbeam-product-page",
+    "docker-build": "docker build -t gymbeam-product-page .",
+    "docker-run": "docker run --rm -d -p 3000:3000 --name gymbeam-product-page gymbeam-product-page",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint FE --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview --host"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
