@@ -1,16 +1,20 @@
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { ContainerProps, Grid, styled } from '@mui/material';
-import LoadingState from '@gymbeam/components/LoadingState';
 import Filter from '@gymbeam/components/Filter';
 import ProductList from '@gymbeam/components/ProductList';
+import { ErrorState, LoadingState } from '@gymbeam/components/state';
 import useScrollTop from '@gymbeam/hooks/useScrollTop';
 import { useGetCategory } from '@gymbeam/services/repository/category';
 
 const Category: FC = () => {
     const [searchParams] = useSearchParams();
-    const { data, isLoading, isFetching } = useGetCategory(searchParams.toString());
+    const { data, isLoading, isFetching, isError } = useGetCategory(searchParams.toString());
     const productListContainerRef = useScrollTop(searchParams);
+
+    if (isError) {
+        return <ErrorState />;
+    }
 
     return (
         <>
@@ -19,13 +23,7 @@ const Category: FC = () => {
                 <Grid item id="product-filter-container" xs={12} md={3}>
                     <Filter filters={data?.filters} />
                 </Grid>
-                <Grid
-                    item
-                    id="product-list-container"
-                    ref={productListContainerRef}
-                    xs={12}
-                    md={9}
-                >
+                <Grid item id="product-list-container" ref={productListContainerRef} xs={12} md={9}>
                     <ProductList items={data?.items ?? []} />
                 </Grid>
             </CategoryContainer>
