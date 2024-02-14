@@ -29,7 +29,7 @@ const HeaderContainer = styled(Box)(({ theme: { spacing, palette } }) => ({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    padding: spacing(2, 3, 0, 0),
+    padding: spacing(2, 3, 2, 0),
     marginRight: spacing(-3),
     position: 'sticky',
     top: 0,

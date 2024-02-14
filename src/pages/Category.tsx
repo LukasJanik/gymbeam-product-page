@@ -20,10 +20,10 @@ const Category: FC = () => {
         <>
             <LoadingState isLoading={isLoading || isFetching} />
             <CategoryContainer container>
-                <Grid item id="product-filter-container" xs={12} md={3}>
+                <Grid item id="product-filter-container" xs={12} md={4} lg={3}>
                     <Filter filters={data?.filters} />
                 </Grid>
-                <Grid item id="product-list-container" ref={productListContainerRef} xs={12} md={9}>
+                <Grid item id="product-list-container" ref={productListContainerRef} xs={12} md={8} lg={9}>
                     <ProductList items={data?.items ?? []} />
                 </Grid>
             </CategoryContainer>
