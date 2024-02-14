@@ -1,10 +1,11 @@
 import { FC, useState } from 'react';
-import { Divider, Stack } from '@mui/material';
+import { Divider, Stack, useMediaQuery, useTheme } from '@mui/material';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
 import Multiselects from './Multiselects';
 import Checkboxes from './Checkboxes';
 import Ranges from './Ranges';
 import Header from './Header';
+import Drawer from './Drawer';
 
 type FilterProps = {
     filters: CategoryFilters | undefined;
@@ -14,7 +15,10 @@ const Filter: FC<FilterProps> = ({ filters }) => {
     const { multiselects = [], checkboxes = [], ranges = [] } = filters ?? {};
     const [resetCounter, setResetCounter] = useState<number>(0);
 
-    return (
+    const { breakpoints } = useTheme();
+    const matches = useMediaQuery(breakpoints.down('md'));
+
+    const content = (
         <>
             <Header onReset={() => setResetCounter((prevState) => prevState + 1)} />
             <Stack key={`${resetCounter}`} gap={2} py={3} divider={<Divider />}>
@@ -24,6 +28,8 @@ const Filter: FC<FilterProps> = ({ filters }) => {
             </Stack>
         </>
     );
+
+    return matches ? <Drawer>{content}</Drawer> : content;
 };
 
 export default Filter;

@@ -10,7 +10,7 @@ type ProductListProps = {
 const ProductList: FC<ProductListProps> = ({ items }) => (
     <Grid container>
         {items.map((item, index) => (
-            <Grid item sm={6} lg={4} xl={3} key={index}>
+            <Grid item xs={12} lg={4} xl={3} key={index}>
                 <Product product={item} />
             </Grid>
         ))}
