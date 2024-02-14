@@ -30,7 +30,7 @@ const Range: FC<RangeProps> = ({ range, getRangeValues, updateRangeValues }) => 
                         },
                         { value: max, label: '' },
                     ]}
-                    step={10}
+                    step={1}
                     value={value}
                     valueLabelDisplay="auto"
                     min={min}

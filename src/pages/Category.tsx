@@ -26,7 +26,7 @@ const Category: FC = () => {
 };
 
 const CategoryContainer = styled(Grid)<ContainerProps>(({ theme: { palette } }) => ({
-    height: '100%',
+    height: 'calc(100% - 64px)',
     overflow: 'hidden',
     backgroundColor: palette.grey[100],
 
