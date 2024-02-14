@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { ContainerProps, Grid, styled } from '@mui/material';
+import { ErrorState, LoadingState } from '@gymbeam/components/state';
+import { CategoryLayout } from '@gymbeam/components/layouts';
 import Filter from '@gymbeam/components/Filter';
 import ProductList from '@gymbeam/components/ProductList';
-import { ErrorState, LoadingState } from '@gymbeam/components/state';
 import useScrollTop from '@gymbeam/hooks/useScrollTop';
 import { useGetCategory } from '@gymbeam/services/repository/category';
 
@@ -19,52 +19,13 @@ const Category: FC = () => {
     return (
         <>
             <LoadingState isLoading={isLoading || isFetching} />
-            <CategoryContainer container>
-                <Grid item id="product-filter-container" xs={12} md={4} lg={3}>
-                    <Filter filters={data?.filters} />
-                </Grid>
-                <Grid item id="product-list-container" ref={productListContainerRef} xs={12} md={8} lg={9}>
-                    <ProductList items={data?.items ?? []} />
-                </Grid>
-            </CategoryContainer>
+            <CategoryLayout
+                productListContainerRef={productListContainerRef}
+                filter={<Filter filters={data?.filters} />}
+                productList={<ProductList items={data?.items ?? []} />}
+            />
         </>
     );
 };
-
-const CategoryContainer = styled(Grid)<ContainerProps>(
-    ({ theme: { palette, breakpoints, shadows, spacing } }) => ({
-        height: 'calc(100% - 64px)',
-        backgroundColor: palette.grey[100],
-        position: 'relative',
-        overflow: 'auto',
-
-        '& > .MuiGrid-item': {
-            overflow: 'auto',
-            scrollBehavior: 'smooth',
-        },
-
-        '& #product-filter-container': {
-            padding: spacing(0, 3),
-        },
-
-        '& #product-list-container': {
-            padding: spacing(4, 3),
-        },
-
-        [breakpoints.up('md')]: {
-            overflow: 'hidden',
-
-            '& > .MuiGrid-item': {
-                height: '100%',
-            },
-
-            '& #product-filter-container': {
-                height: '100%',
-                boxShadow: shadows[5],
-                backgroundColor: palette.common.white,
-            },
-        },
-    })
-);
 
 export default Category;

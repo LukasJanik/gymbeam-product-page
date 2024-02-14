@@ -1,5 +1,5 @@
 import { FC, ReactNode, useState } from 'react';
-import { Box, Button, Drawer as MuiDrawer } from '@mui/material';
+import { Box, Button, Drawer as MuiDrawer, styled } from '@mui/material';
 
 type DrawerProps = {
     children: ReactNode;
@@ -10,12 +10,20 @@ const Drawer: FC<DrawerProps> = ({ children }) => {
 
     return (
         <Box mt={3} display="flex" justifyContent="center">
-            <Button variant="contained" onClick={() => setIsOpen(true)}>Zobraziť filtre</Button>
-            <MuiDrawer anchor="left" open={isOpen} onClose={() => setIsOpen(false)}>
+            <Button variant="contained" onClick={() => setIsOpen(true)}>
+                Zobraziť filtre
+            </Button>
+            <DrawerContainer anchor="left" open={isOpen} onClose={() => setIsOpen(false)}>
                 <Box px={3}>{children}</Box>
-            </MuiDrawer>
+            </DrawerContainer>
         </Box>
     );
 };
+
+const DrawerContainer = styled(MuiDrawer)(() => ({
+    '.MuiPaper-root': {
+        width: '80%',
+    },
+}));
 
 export default Drawer;
