@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Divider, Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
 import Multiselects from './Multiselects';
 import Checkboxes from './Checkboxes';
@@ -21,7 +21,7 @@ const Filter: FC<FilterProps> = ({ filters }) => {
     const content = (
         <>
             <Header onReset={() => setResetCounter((prevState) => prevState + 1)} />
-            <Stack key={`${resetCounter}`} gap={2} py={3} divider={<Divider />}>
+            <Stack key={`${resetCounter}`} gap={2} py={3}>
                 <Multiselects multiselects={multiselects} />
                 <Checkboxes checkboxes={checkboxes} />
                 <Ranges ranges={ranges} />

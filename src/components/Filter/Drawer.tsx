@@ -23,6 +23,8 @@ const Drawer: FC<DrawerProps> = ({ children }) => {
 const DrawerContainer = styled(MuiDrawer)(() => ({
     '.MuiPaper-root': {
         width: '80%',
+        marginTop: 64,
+        height: 'calc(100% - 64px)',
     },
 }));
 

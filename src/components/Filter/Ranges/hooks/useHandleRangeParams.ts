@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router-dom';
-import { GetRangeValues, UpdateRangeValues, Range } from '../types';
-import useDebounce from '@gymbeam/hooks/useDebounce';
+import { useDebounce } from '@gymbeam/hooks';
+import { GetRangeValues, UpdateRangeValues, Range } from '../../types';
 
 const getRangeValues = (range: string | null) => {
-    const rangeValues = range?.split('-').map(parseInt);
+    const rangeValues = range?.split('-').map(Number);
 
     return rangeValues?.length === 2 ? (rangeValues as Range) : null;
 };

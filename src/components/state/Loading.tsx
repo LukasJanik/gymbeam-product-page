@@ -15,7 +15,7 @@ const LoadingStateContainer = styled(Box)(({ theme: { palette } }) => ({
     width: '100vw',
     height: '100vh',
     position: 'absolute',
-    zIndex: 1000,
+    zIndex: 1201,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

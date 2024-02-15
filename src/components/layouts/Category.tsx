@@ -1,22 +1,34 @@
-import { FC, ReactNode, RefObject } from 'react';
+import { FC, ReactNode } from 'react';
 import { ContainerProps, Grid, styled } from '@mui/material';
+import { useScrollTop } from '@gymbeam/hooks';
 
 type CategoryProps = {
-    productListContainerRef: RefObject<HTMLDivElement>;
+    searchParams: URLSearchParams;
     filter: ReactNode;
     productList: ReactNode;
 };
 
-const Category: FC<CategoryProps> = ({ productListContainerRef, filter, productList }) => (
-    <CategoryContainer container>
-        <Grid item id="product-filter-container" xs={12} md={4} lg={3}>
-            {filter}
-        </Grid>
-        <Grid item id="product-list-container" ref={productListContainerRef} xs={12} md={8} lg={9}>
-            {productList}
-        </Grid>
-    </CategoryContainer>
-);
+const Category: FC<CategoryProps> = ({ searchParams, filter, productList }) => {
+    const productListContainerRef = useScrollTop(searchParams);
+
+    return (
+        <CategoryContainer container>
+            <Grid item id="product-filter-container" xs={12} md={4} lg={3}>
+                {filter}
+            </Grid>
+            <Grid
+                item
+                id="product-list-container"
+                ref={productListContainerRef}
+                xs={12}
+                md={8}
+                lg={9}
+            >
+                {productList}
+            </Grid>
+        </CategoryContainer>
+    );
+};
 
 const CategoryContainer = styled(Grid)<ContainerProps>(
     ({ theme: { palette, breakpoints, shadows, spacing } }) => ({

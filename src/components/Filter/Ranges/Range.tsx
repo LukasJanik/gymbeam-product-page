@@ -1,12 +1,14 @@
 import { FC, useState } from 'react';
-import { Box, Slider, Stack, Typography } from '@mui/material';
-import { FilterRange } from '@gymbeam/services/repository/category/types';
+import { Slider, Stack } from '@mui/material';
 import {
     GetRangeValues,
     UpdateRangeValues,
     Range as RangeT,
 } from '@gymbeam/components/Filter/types';
 import { Title } from '@gymbeam/components/Filter/section';
+import { FilterRange } from '@gymbeam/services/repository/category/types';
+import useFixRange from './hooks/useFixRange';
+import Labels from '@gymbeam/components/Filter/Ranges/Labels';
 
 type RangeProps = {
     range: FilterRange;
@@ -14,38 +16,41 @@ type RangeProps = {
     updateRangeValues: UpdateRangeValues;
 };
 
+const getMarks = (min: number, max: number) => [
+    {
+        value: min,
+        label: '',
+    },
+    { value: max, label: '' },
+];
+
 const Range: FC<RangeProps> = ({ range, getRangeValues, updateRangeValues }) => {
     const { name, min, max, code } = range;
-    const [value, setValue] = useState<RangeT>(getRangeValues(code) ?? [min, max]);
+    const [currentRange, setCurrentRange] = useState<RangeT>(getRangeValues(code) ?? [min, max]);
+
+    const onChange = (newRange: RangeT) => {
+        setCurrentRange(newRange);
+        updateRangeValues(code, newRange);
+    };
+
+    useFixRange(min, max, currentRange, onChange);
 
     return (
         <Stack gap={2}>
             <Title>{name}</Title>
             <Stack px={3}>
                 <Slider
-                    marks={[
-                        {
-                            value: min,
-                            label: '',
-                        },
-                        { value: max, label: '' },
-                    ]}
+                    marks={getMarks(min, max)}
                     step={1}
-                    value={value}
+                    value={currentRange}
                     valueLabelDisplay="auto"
                     min={min}
                     max={max}
-                    onChange={(_, newValue) => {
-                        const typedValue = newValue as RangeT;
-                        setValue(typedValue);
-
-                        updateRangeValues(code, typedValue);
+                    onChange={(_, newRange) => {
+                        onChange(newRange as RangeT);
                     }}
                 />
-                <Box display="flex" justifyContent="space-between">
-                    <Typography variant="body2">{min}</Typography>
-                    <Typography variant="body2">{max}</Typography>
-                </Box>
+                <Labels min={min} max={max} />
             </Stack>
         </Stack>
     );
