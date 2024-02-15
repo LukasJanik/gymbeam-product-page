@@ -62,10 +62,6 @@ const CategoryContainer = styled(Grid)<ContainerProps>(
                 boxShadow: shadows[5],
                 backgroundColor: palette.common.white,
             },
-
-            '& #product-list-container': {
-                display: 'flex',
-            },
         },
     })
 );
