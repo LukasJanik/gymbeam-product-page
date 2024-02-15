@@ -1,30 +1,17 @@
-# React + TypeScript + Vite
+# GymBeam Case Study
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Small FE (React) application to show and filter products retrieved from GymBeam API
 
-Currently, two official plugins are available:
+Application listens on port `3000` both in `dev` and `preview` mode
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To run application locally:
+- `npm install`
+- dev mode: `npm run dev`
+- preview: `npm run build && npm run preview`
 
-## Expanding the ESLint configuration
+To run preview in docker run:
+- `docker build -t gymbeam-product-page .` 
+- `docker-run": "docker run --rm -d -p 3000:3000 --name gymbeam-product-page gymbeam-product-page`,
+- or via npm `npm run docker-build && npm run docker-run`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+To access category list visit `http://localhost:3000/sports-nutrition/`
