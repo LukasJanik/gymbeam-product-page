@@ -14,12 +14,14 @@ const CommonState: FC<Common> = ({ Icon, label }) => (
     </CommonStateContainer>
 );
 
-const CommonStateContainer = styled(Typography)<TypographyProps>(({ theme: { spacing } }) => ({
+const CommonStateContainer = styled(Typography)<TypographyProps>(() => ({
     display: 'flex',
+    flexDirection: 'column',
     flex: '1 1 auto',
-    gap: spacing(2),
+    flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
     height: '100%',
 }));
 

@@ -10,7 +10,11 @@ type ProductListProps = {
 
 const ProductList: FC<ProductListProps> = ({ items }) => {
     if (!items.length) {
-        return <NoResultsState />;
+        return (
+            <Grid container>
+                <NoResultsState />
+            </Grid>
+        );
     }
 
     return (
