@@ -38,6 +38,9 @@ export type CategoryFilterResponse = {
 export type CategoryResponse = {
     items: CategoryItemResponse[];
     filters: CategoryFilterResponse[];
+    meta: {
+        total: number;
+    };
 };
 
 export type CategoryItem = Pick<CategoryItemResponse, 'name' | 'thumbnail'> & {
@@ -68,4 +71,5 @@ export type CategoryFilters = {
 export type CategoryData = {
     items: CategoryItem[];
     filters: CategoryFilters;
+    totalNumberOfItems: number;
 };

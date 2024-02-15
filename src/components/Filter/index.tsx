@@ -1,15 +1,13 @@
 import { FC, useState } from 'react';
 import { Stack, useMediaQuery, useTheme } from '@mui/material';
-import { CategoryFilters } from '@gymbeam/services/repository/category/types';
+import { CategoryData } from '@gymbeam/services/repository/category/types';
 import Multiselects from './Multiselects';
 import Checkboxes from './Checkboxes';
 import Ranges from './Ranges';
 import Header from './Header';
 import Drawer from './Drawer';
 
-type FilterProps = {
-    filters: CategoryFilters | undefined;
-};
+type FilterProps = Partial<Pick<CategoryData, 'filters'>>;
 
 const Filter: FC<FilterProps> = ({ filters }) => {
     const { multiselects = [], checkboxes = [], ranges = [] } = filters ?? {};

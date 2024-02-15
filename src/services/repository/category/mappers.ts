@@ -82,7 +82,8 @@ const filterFilters = (filters: CategoryResponse['filters']) =>
             ranges: [],
         } as CategoryFilters
     );
-export const mapCategoryResponse = ({ items, filters }: CategoryResponse): CategoryData => ({
+export const mapCategoryResponse = ({ items, filters, meta }: CategoryResponse): CategoryData => ({
     items: mapItems(items),
     filters: filterFilters(filters),
+    totalNumberOfItems: meta.total,
 });

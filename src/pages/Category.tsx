@@ -20,7 +20,12 @@ const Category: FC = () => {
             <CategoryLayout
                 searchParams={searchParams}
                 filter={<Filter filters={data?.filters} />}
-                productList={<ProductList items={data?.items ?? []} />}
+                productList={
+                    <ProductList
+                        items={data?.items}
+                        totalNumberOfItems={data?.totalNumberOfItems}
+                    />
+                }
             />
         </>
     );

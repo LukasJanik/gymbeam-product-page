@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar as MuiAppBar, Box, styled, Toolbar } from '@mui/material';
 
 const Navbar: FC = () => (
     <Box flexGrow={1}>
@@ -15,5 +15,11 @@ const Navbar: FC = () => (
         </AppBar>
     </Box>
 );
+
+const AppBar = styled(MuiAppBar)(() => ({
+    '& .MuiToolbar-root': {
+        height: 64,
+    },
+}));
 
 export default Navbar;
