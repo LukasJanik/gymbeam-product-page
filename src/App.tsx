@@ -2,8 +2,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Category from '@gymbeam/pages/Category';
 import Head from '@gymbeam/components/Head';
-import QueryClientProvider from '@gymbeam/services/QueryClientProvider';
 import Navbar from '@gymbeam/components/Navbar';
+import QueryClientProvider from '@gymbeam/services/QueryClientProvider';
 
 function App() {
 

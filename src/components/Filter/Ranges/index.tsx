@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { CategoryFilters } from '@gymbeam/services/repository/category/types';
-import useHandleRangeParams from '@gymbeam/components/Filter/Ranges/hooks/useHandleRangeParams';
+import useHandleRangeParams from './hooks/useHandleRangeParams';
 import Range from './Range';
 
 type RangesProps = Pick<CategoryFilters, 'ranges'>;

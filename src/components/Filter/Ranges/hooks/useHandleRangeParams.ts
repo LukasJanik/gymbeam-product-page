@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useDebounce } from '@gymbeam/hooks';
-import { GetRangeValues, UpdateRangeValues, Range } from '../../types';
+import { GetRangeValues, UpdateRangeValues, Range } from '@gymbeam/components/Filter/types';
 
 const getRangeValues = (range: string | null) => {
     const rangeValues = range?.split('-').map(Number);

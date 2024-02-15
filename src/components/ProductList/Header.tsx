@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { CategoryData } from '@gymbeam/services/repository/category/types';
 import { Typography } from '@mui/material';
+import { CategoryData } from '@gymbeam/services/repository/category/types';
 
 type HeaderProps = Pick<CategoryData, 'totalNumberOfItems'>;
 

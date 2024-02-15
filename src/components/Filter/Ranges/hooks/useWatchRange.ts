@@ -1,13 +1,21 @@
 import { useEffect } from 'react';
 import { Range } from '@gymbeam/components/Filter/types';
 
-const useFixRange = (
+const useWatchRange = (
     min: number,
     max: number,
     currentRange: Range,
-    onChange: (value: Range) => void
+    getRangeFromParams: () => Range | null,
+    onChange: (value: Range) => void,
+    setCurrentRange: (value: Range) => void
 ) => {
     useEffect(() => {
+        if (!getRangeFromParams()) {
+            setCurrentRange([min, max]);
+
+            return;
+        }
+
         const [currentMin, currentMax] = currentRange;
         const [newMin, newMax] = [
             currentMin < min ? min : currentMin,
@@ -20,4 +28,4 @@ const useFixRange = (
     }, [min, max]);
 };
 
-export default useFixRange;
+export default useWatchRange;

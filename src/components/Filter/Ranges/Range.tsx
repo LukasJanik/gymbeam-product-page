@@ -7,8 +7,8 @@ import {
 } from '@gymbeam/components/Filter/types';
 import { Title } from '@gymbeam/components/Filter/section';
 import { FilterRange } from '@gymbeam/services/repository/category/types';
-import useFixRange from './hooks/useFixRange';
-import Labels from '@gymbeam/components/Filter/Ranges/Labels';
+import useWatchRange from './hooks/useWatchRange';
+import Labels from './Labels';
 
 type RangeProps = {
     range: FilterRange;
@@ -26,14 +26,15 @@ const getMarks = (min: number, max: number) => [
 
 const Range: FC<RangeProps> = ({ range, getRangeValues, updateRangeValues }) => {
     const { name, min, max, code } = range;
-    const [currentRange, setCurrentRange] = useState<RangeT>(getRangeValues(code) ?? [min, max]);
+    const getRangeFromParams = () => getRangeValues(code);
+    const [currentRange, setCurrentRange] = useState<RangeT>(getRangeFromParams() ?? [min, max]);
 
     const onChange = (newRange: RangeT) => {
         setCurrentRange(newRange);
         updateRangeValues(code, newRange);
     };
 
-    useFixRange(min, max, currentRange, onChange);
+    useWatchRange(min, max, currentRange, getRangeFromParams, onChange, setCurrentRange);
 
     return (
         <Stack gap={2}>
